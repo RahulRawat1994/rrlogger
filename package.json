@@ -1,0 +1,14 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "logger packages",
+  "main": "LogManager.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/LogManager.ts",
+    "prod": "tsc && node ./build/LogManager.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Rawat <rr904196@gmail.com>",
+  "license": "ISC"
+}

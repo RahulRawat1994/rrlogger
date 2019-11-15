@@ -1,0 +1,3 @@
+class Daily implements IDriver {
+    
+}
