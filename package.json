@@ -2,13 +2,21 @@
   "name": "logger",
   "version": "1.0.0",
   "description": "logger packages",
-  "main": "LogManager.js",
+  "main": "Logger.js",
   "scripts": {
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/LogManager.ts",
-    "prod": "tsc && node ./build/LogManager.js",
+    "dev": "ts-node-dev --respawn --transpileOnly index.ts",
+    "prod": "tsc && node ./dist/Logger.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rahul Rawat <rr904196@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.12.11",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.44"
+  }
 }

@@ -1,31 +1,36 @@
-import LogManager from './src/LogManager';
+import Logger from './src/Logger';
+import path from 'path';
 
 const logConfig = {
     /**
      * Default transport for logger
      */
-    transport: process.env.log.transport || 'stack',
+    default: process.env.logChannel || 'stack',
     
     channels :{
 
         stack:{
-            driver : 'stack',
-            channels : ['mail', 'single']
+            channels :  ['console', 'single']
         },
 
         single: {
-            driver : 'Single',
             filename: 'single.log',
-            path : '/'
+            level:'info',
+            dirname : path.join(__dirname,'/logs/')
         },
     
         daily: {
-            driver : 'Daily',
-            path: '/'
+            level:'info',
+            filename: 'application-%DATE%.log',
+            datePattern: 'YYYY-MM-DD-HH',
+            zippedArchive: true,
+            maxSize: '20m',
+            maxFiles: '14d',
+            dirname : path.join(__dirname,'/logs')
         },
     
         console:{
-            driver : 'Console'
+            level:'error'
         },
     
         mail:{
@@ -48,6 +53,8 @@ const logConfig = {
     
 }
 
-const logger = new LogManager(logConfig);
+const logger = Logger.getInstance(logConfig);
+
+logger.log('info','Super Man');
 
 export default logger;

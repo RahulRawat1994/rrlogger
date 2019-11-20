@@ -1,3 +1,0 @@
-class DB implements IDriver {
-    
-}

@@ -1,4 +1,17 @@
 export default interface ILogConfig {
-    transport :string;
-    channels  :Object;
+    default :string;
+    channels :{
+        stack:{
+            channels:Array<string>
+        },
+        single: object,
+        daily: {
+            filename:string,
+
+        },
+        console:object,
+        mail:object,
+        db:object,
+        custom:object
+    };
 }

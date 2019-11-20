@@ -1,3 +1,0 @@
-class Single implements IDriver {
-    
-}

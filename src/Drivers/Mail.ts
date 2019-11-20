@@ -1,3 +1,0 @@
-class Mail implements IDriver {
-    
-}
