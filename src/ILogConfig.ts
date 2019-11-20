@@ -1,3 +1,5 @@
+import TransportStream = require("winston-transport");
+
 export default interface ILogConfig {
     default :string;
     channels :{
@@ -12,6 +14,8 @@ export default interface ILogConfig {
         console:object,
         mail:object,
         db:object,
-        custom:object
+        custom:{
+            transporter:TransportStream
+        }
     };
 }

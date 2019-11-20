@@ -14,7 +14,9 @@
   "dependencies": {
     "@types/node": "^12.12.11",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^4.2.1"
+    "winston-daily-rotate-file": "^4.2.1",
+    "winston-mail": "^2.0.0",
+    "winston-mongodb": "^5.0.1"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.44"

@@ -10,7 +10,7 @@ const logConfig = {
     channels :{
 
         stack:{
-            channels :  ['console', 'single']
+            channels :  ['console', 'single', 'mail' ]
         },
 
         single: {
@@ -34,20 +34,25 @@ const logConfig = {
         },
     
         mail:{
-            driver: 'Mail',
-            from :'jack@gmail.com',
-            to: 'jack@gmail.com',
-            subject : 'Error Log'
+            level:'error',
+            to:'info@gmail.com',
+            from: 'winston@gmail.com',
+            host:'smtp.gmail.com',
+            port:'587',
+            tls:true,
+            username:'rahulrawat@zapbuild.com',
+            password:'ztech@44',
+            subject:'Winston Error Log',
         },
     
         db:{
-            driver: 'Db',
+            level:'error',
+            db:'logger',
             collection: 'logs',
-            connectionString : 'localhost:27017/tcaredb'
         },
     
         custom:{
-            
+            driver:''
         }
     }
     
