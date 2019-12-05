@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "rrlogger",
   "version": "1.0.0",
   "description": "logger packages",
   "main": "LoggerResolver.js",
