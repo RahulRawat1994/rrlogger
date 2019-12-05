@@ -20,21 +20,21 @@ const  logConfig  = {
 	* Default transport for logger
 	*/
 	default:  process.env.logChannel  ||  'stack',
-	enviorment:  process.env.node_env  ||  'production',
+	environment:  process.env.node_env  ||  'production',
 
 	channels :{
 		stack:{
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			channels : ['console', 'daily', 'db' ]
 		},
 		single: {
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			level:'info',
 			filename:  'single.log',
 			dirname :  path.join(__dirname,'/logs/')
 		},
 		daily: {
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			level:'info',
 			filename:  'application-%DATE%.log',
 			datePattern:  'YYYY-MM-DD-HH',
@@ -45,11 +45,11 @@ const  logConfig  = {
 		},
 
 		console:{
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			level:'error',
 		},
 		mail:{
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			level:'error',
 			to:'jamesdoe124@yopmail.com',
 			from:'xyz@email.com',
@@ -61,7 +61,7 @@ const  logConfig  = {
 			subject:'Winston Error Log',
 		},
 		db:{
-			enviorments: ['production','development'],
+			environments: ['production','development'],
 			level:'error',
 			db:'mongodb://localhost:27017/logger',
 			collection:  'logs',

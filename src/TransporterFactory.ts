@@ -15,12 +15,12 @@ export default class TransporterFactory {
         
         const configKey = config.default;
         const options:any = config.channels[config.default];
-        const runInEnviorment = options.enviorments;
+        const runInenvironment = options.environments;
         
-        if(runInEnviorment && !runInEnviorment.includes(config.enviorment)){
+        if(runInenvironment && !runInenvironment.includes(config.environment)){
             return [];
         }
-        delete options.enviorments;
+        delete options.environments;
 
         switch(config.default){
             case 'single':

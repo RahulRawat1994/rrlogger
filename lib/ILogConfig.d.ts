@@ -1,5 +1,5 @@
 export default interface ILogConfig {
     default: string;
-    enviorment: string;
+    environment: string;
     channels: object;
 }

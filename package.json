@@ -1,6 +1,6 @@
 {
   "name": "rrlogger",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "logger packages",
   "main": "lib/LoggerResolver.js",
   "scripts": {
