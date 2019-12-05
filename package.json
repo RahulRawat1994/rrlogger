@@ -1,8 +1,8 @@
 {
   "name": "rrlogger",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "logger packages",
-  "main": "LoggerResolver.js",
+  "main": "lib/LoggerResolver.js",
   "scripts": {
     "prepare": "npm run build",
     "version" : "git add -A src",
