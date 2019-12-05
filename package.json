@@ -2,12 +2,12 @@
   "name": "logger",
   "version": "1.0.0",
   "description": "logger packages",
-  "main": "Logger.js",
+  "main": "LoggerResolver.js",
   "scripts": {
-    "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly index.ts",
-    "prod": "tsc && node ./dist/Logger.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run build",
+    "version" : "git add -A src",
+    "postversion" : "git push && git push --tags",
+    "build": "tsc"
   },
   "author": "Rahul Rawat <rr904196@gmail.com>",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "winston-mongodb": "^5.0.1"
   },
   "devDependencies": {
-    "ts-node-dev": "^1.0.0-pre.44"
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.3"
   }
 }

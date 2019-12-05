@@ -1,47 +1,73 @@
+import * as winston from 'winston';
 import ILogConfig from './ILogConfig';
 
 import TransportStream = require("winston-transport");
-import winston from 'winston';
 import DailyRotateFile = require("winston-daily-rotate-file");
-import Mail = require("winston-mail");
-import MongoDB = require('winston-mongodb');
+require("winston-mail");
+import { MongoDBTransportInstance } from "winston-mongodb";
+const { MongoDB }: { MongoDB: MongoDBTransportInstance } = require("winston-mongodb");
+
+
+
 export default class TransporterFactory {
 
     static getTransporters(config:ILogConfig):TransportStream[]{
         
+        const configKey = config.default;
+        const options:any = config.channels[config.default];
+        const runInEnviorment = options.enviorments;
+        
+        if(runInEnviorment && !runInEnviorment.includes(config.enviorment)){
+            return [];
+        }
+        delete options.enviorments;
+
         switch(config.default){
             case 'single':
-                return [new winston.transports.File({...config.channels[config.default]})]
-            break;
+                return [new winston.transports.File({...options})]
+           
             case 'daily':
-                return  [new DailyRotateFile({...config.channels[config.default]})]
-            break;
+                return  [new DailyRotateFile({...options})]
+           
             case 'console':
-                return [new winston.transports.Console({...config.channels[config.default]})]
-            break;
+                return [new winston.transports.Console({...options})]
+           
             case 'mail':
-             return [new Mail({...config.channels[config.default]})];
-            break;
+             return [new winston.transports['Mail']({...options})];
+           
             case 'db':
-                return [new MongoDB({...config.channels[config.default]})]
-            break;
+                return [ new MongoDB({...options})]
+           
             case 'stack':
-                const transports = config.channels[config.default].channels;
+                const transports = options.channels;
                 const newConfig = config;
-                const transportArr =transports.map(transport =>{
+                let transportArr =transports.map((transport: any) =>{
                     newConfig.default = transport;
                     const transports = this.getTransporters(newConfig);
                     return transports[0];
                 })
+                  
                 return transportArr;
              
-            break;
+           
             case 'custom':
-                return [config.channels[config.default].transporter];
-            break;
+                return [options.transporter];
+           
             default:
-                throw new Error(`No class found with "${config.default}" name`);
+                // try {
+                //     if(!options || !options.package){
+                        throw new Error(`No class found with "${config.default}" name`);
+                //     }
+                //     require('winston-mongodb').MongoDB;
+                //     //console.log(winstonExt)
+                //     return [new winston.transports.MongoDB({...options})]
+                // } catch (error) {
+                //     throw new Error(`Trasport Error: "${error.message}"`);
+                // }
             break;
+
+                
+           
         }
     }
 

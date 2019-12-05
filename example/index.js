@@ -1,5 +1,5 @@
-import Logger from './src/Logger';
-import path from 'path';
+const LoggerResolver = require('../lib/LoggerResolver');
+const path = require('path');
 
 const logConfig = {
     /**
@@ -7,19 +7,27 @@ const logConfig = {
      */
     default: process.env.logChannel || 'stack',
     
+    enviorment: process.env.node_env || 'production',
+
     channels :{
 
         stack:{
-            channels :  ['console', 'single', 'mail' ]
+
+            enviorments: ['production','development'],
+            channels :  ['console', 'daily', 'db' ]
         },
 
         single: {
-            filename: 'single.log',
+
+            enviorments: ['production','development'],
             level:'info',
+            filename: 'single.log',
             dirname : path.join(__dirname,'/logs/')
         },
     
         daily: {
+
+            enviorments: ['production','development'],
             level:'info',
             filename: 'application-%DATE%.log',
             datePattern: 'YYYY-MM-DD-HH',
@@ -30,13 +38,16 @@ const logConfig = {
         },
     
         console:{
-            level:'error'
+            enviorments: ['production','development'],
+            level:'error',
         },
     
         mail:{
+
+            enviorments: ['production','development'],
             level:'error',
-            to:'info@gmail.com',
-            from: 'winston@gmail.com',
+            to:'rakesh124@yopmail.com',
+            from: 'rahulrawat@zapbuild.com',
             host:'smtp.gmail.com',
             port:'587',
             tls:true,
@@ -46,20 +57,18 @@ const logConfig = {
         },
     
         db:{
+
+            enviorments: ['production','development'],
             level:'error',
-            db:'logger',
+            db:'mongodb://localhost:27017/logger',
             collection: 'logs',
         },
-    
-        custom:{
-            driver:''
-        }
+
     }
     
 }
 
-const logger = Logger.getInstance(logConfig);
 
-logger.log('info','Super Man');
 
-export default logger;
+const logger = LoggerResolver.default.getInstance(logConfig);
+logger.log('error','enter log')

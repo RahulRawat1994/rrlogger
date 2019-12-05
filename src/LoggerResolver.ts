@@ -1,19 +1,23 @@
-import winston from 'winston';
+import * as winston from 'winston';
 import LogFactory from './TransporterFactory'
 import ILogConfig from './ILogConfig';
-export default class Logger {
+export default class LoggerResolver {
 
 
-    public static _winston: any;
+    public static  _winston: any;
 
  
     public static getInstance(logConfig:ILogConfig){
         if(!this._winston){
             const transports =LogFactory.getTransporters(logConfig);
+        
+              
             this._winston = winston.createLogger({
-                level:'info',
-                format: winston.format.simple(),
-                transports:transports
+                format: winston.format.combine(
+                    winston.format.timestamp(),
+                    winston.format.json()
+                ),
+                transports:transports 
             });
         }
         return this._winston;
